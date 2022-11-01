@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CariJadwalController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\TabelAssetController;
@@ -20,8 +21,14 @@ use App\Http\Controllers\TabelPengajuanController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Route::get('/logout', function () {
+    return view('auth.login');
+});
+
+Route::get('/dashboard', [DashboardController::class]);
 
 Route::get('/jadwal', [CariJadwalController::class, 'index']);
 Route::get('/minjam', [PeminjamanController::class, 'index']);
