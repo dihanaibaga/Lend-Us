@@ -28,6 +28,9 @@ Route::get('/logout', function () {
     return view('auth.login');
 });
 
+Route::resource('unit', UnitController::class);
+
+
 Route::get('/dashboard', [DashboardController::class]);
 
 Route::get('/jadwal', [CariJadwalController::class, 'index']);
