@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asset;
+use App\Models\Pengajuan;
 use Illuminate\Http\Request;
-use App\Http\Requests\AssetRequest;
+use App\Http\Requests\PengajuanRequest;
 
-class AssetController extends Controller
+class PengajuanController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $data=Asset::orderBy('id', 'DESC')->get();
+        $data=Pengajuan::orderBy('id', 'DESC')->get();
 
-        return view('pages.asset.index',[
-         'asset'=>$data
-        ]);    }
+       return view('pages.pengajuan.index',[
+        'pengajuan'=>$data
+       ]);  
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -28,7 +29,7 @@ class AssetController extends Controller
      */
     public function create()
     {
-        return view('pages.asset.create');
+       return view('pages.pengajuan.create');
     }
 
     /**
@@ -37,13 +38,13 @@ class AssetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AssetRequest $request)
+    public function store(PengajuanRequest $request)
     {
         $data = $request->all();
-        $model = new Asset();
+        $model = new Pengajuan();
         $model->create($data);
 
-        return redirect()->route('asset.index')->with('success', 'data unit berhasil di ditambahkan');
+        return redirect()->route('pengajuan.index')->with('success', 'data pengajuan berhasil di ditambahkan');
     }
 
     /**
@@ -52,9 +53,11 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function show(Asset $asset)
+    public function show(Pengajuan $pengajuan)
     {
-        //
+        return view('pages.pengajuan.show', [
+            'data'=>$pengajuan
+        ]);
     }
 
     /**
@@ -65,9 +68,8 @@ class AssetController extends Controller
      */
     public function edit($id)
     {
-        $asset = Asset::findOrFail($id);
-        return view('pages.asset.edit', ['asset' => $asset]); 
-
+        $pengajuan = Pengajuan::findOrFail($id);
+        return view('pages.pengajuan.edit', ['pengajuan' => $pengajuan]);
     }
 
     /**
@@ -77,13 +79,13 @@ class AssetController extends Controller
      * @param  \App\Models\Asset  $asset
      * @return \Illuminate\Http\Response
      */
-    public function update(AssetRequest $request, $id)
+    public function update(PengajuanRequest $request, $id)
     {
         $data = $request->all();
-        $asset = Asset::findOrFail($id);
-        $asset->update($data);
+        $pengajuan = Pengajuan::findOrFail($id);
+        $pengajuan->update($data);
 
-        return redirect()->route('asset.index')->with('success', 'data unit berhasil di perbaharui');
+        return redirect()->route('pengajuan.index')->with('success', 'data pengajuan berhasil di perbaharui');
     }
 
     /**
@@ -94,9 +96,9 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        $data=Asset::findOrfail($id);
+        $data=Pengajuan::findOrfail($id);
         $data->delete();
 
-        return back()->with('success', 'data unit berhasil di hapus');
+        return back()->with('success', 'data pengajuan berhasil di hapus');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Asset;
 use Illuminate\Database\Seeder;
 
 class AssetSeeder extends Seeder
@@ -13,6 +14,11 @@ class AssetSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Asset::create([
+            'nama_barang'=>'laboratorium',
+            'unit_id'=>'1',
+            'jumlah'=>1,
+            'status'=>'tersedia '
+        ]);
     }
 }

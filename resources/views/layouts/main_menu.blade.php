@@ -36,6 +36,18 @@
         <div class="navbar-container main-menu-content" data-menu="menu-container">
             <!-- include ../../../includes/mixins-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+                <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard') }}" data-toggle="dropdown" data-i18n="eCommerce"><i data-feather="home"></i><span data-i18n="eCommerce">Dashboard</span></a>
+                </li>
+
+                <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="index.html" data-toggle="dropdown"><i data-feather="database"></i><span data-i18n="Dashboards">Data Master</span></a>
+                    <ul class="dropdown-menu">
+                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="dashboard-analytics.html" data-toggle="dropdown" data-i18n="Analytics"><i data-feather="activity"></i><span data-i18n="Analytics">Asset</span></a>
+                        </li>
+                        <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="dashboard-ecommerce.html" data-toggle="dropdown" data-i18n="eCommerce"><i data-feather="shopping-cart"></i><span data-i18n="eCommerce">Unit</span></a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="dropdown nav-item" data-menu="dropdown"><a class="dropdown-toggle nav-link d-flex align-items-center" href="index.html" data-toggle="dropdown"><i data-feather="home"></i><span data-i18n="Dashboards">Dashboards</span></a>
                     <ul class="dropdown-menu">
                         <li data-menu=""><a class="dropdown-item d-flex align-items-center" href="dashboard-analytics.html" data-toggle="dropdown" data-i18n="Analytics"><i data-feather="activity"></i><span data-i18n="Analytics">Analytics</span></a>

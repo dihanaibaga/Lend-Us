@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unit;
-use Illuminate\Http\Request;
+use App\Http\Requests\UnitRequest;
 
 class UnitController extends Controller
 {
@@ -14,7 +14,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        $data=Unit::get();
+        $data=Unit::orderBy('id', 'DESC')->get();
 
        return view('pages.unit.index',[
         'unit'=>$data
@@ -28,7 +28,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+         return view('pages.unit.create');
     }
 
     /**
@@ -37,20 +37,13 @@ class UnitController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
+    public function store(unitRequest $request)
+    {   
+        $data = $request->all();
+        $model = new Unit;
+        $model->create($data);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Unit $unit)
-    {
-        //
+        return redirect()->route('unit.index')->with('success', 'data unit berhasil di ditambahkan');
     }
 
     /**
@@ -59,9 +52,10 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unit $unit)
+    public function edit($id)
     {
-        //
+        $unit = Unit::findOrFail($id);
+        return view('pages.unit.edit', ['unit' => $unit]);
     }
 
     /**
@@ -71,9 +65,15 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unit $unit)
+    public function update(UnitRequest $request, $id)
     {
-        //
+
+        $data = $request->all();
+        $unit = Unit::findOrFail($id);
+        $unit->update($data);
+
+        return redirect()->route('unit.index')->with('success', 'data unit berhasil di perbaharui');
+
     }
 
     /**
@@ -82,8 +82,11 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $unit)
+    public function destroy($id)
     {
-        //
+        $data=Unit::findOrfail($id);
+        $data->delete();
+
+        return back()->with('success', 'data unit berhasil di hapus');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssetsTable extends Migration
+class CreatePengajuansTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateAssetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('assets', function (Blueprint $table) {
+        Schema::create('pengajuans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('unit_id')->constrained();
-            $table->string('nama_barang');
-            $table->integer('jumlah');
+            $table->string('nama');
+            $table->string('peminjaman');
+            $table->string('tanggal_pengajuan');
             $table->string('status');
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateAssetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assets');
+        Schema::dropIfExists('pengajuans');
     }
 }
